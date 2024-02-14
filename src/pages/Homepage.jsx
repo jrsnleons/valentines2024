@@ -8,17 +8,17 @@ function Homepage() {
   const navigate = useNavigate();
   const [displayText, setDisplayText] = useState("");
   const [currentImage, setCurrentImage] = useState(
-    "../../public/mochi-cat-flowers.gif"
+    "/mochi-cat-flowers.gif"
   );
 
   const text = "boop! Macey, will you be my valentine?";
 
   const noImages = [
-    "../../public/angry-1.gif",
-    "../../public/angry2.gif",
-    "../../public/cri.gif",
-    "../../public/sadge.gif",
-    "../../public/sad1.gif",
+    "/angry-1.gif",
+    "/angry2.gif",
+    "/cri.gif",
+    "/sadge.gif",
+    "/sad1.gif",
   ];
 
   const noText = ["Please ;-;", "why :<", "huhu sige na", "pls master", "won't u let me? :("];
