@@ -7,9 +7,7 @@ function Homepage() {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
   const [displayText, setDisplayText] = useState("");
-  const [currentImage, setCurrentImage] = useState(
-    "/mochi-cat-flowers.gif"
-  );
+  const [currentImage, setCurrentImage] = useState("/mochi-cat-flowers.gif");
 
   const text = "boop! Macey, will you be my valentine?";
 
@@ -21,30 +19,43 @@ function Homepage() {
     "/sad1.gif",
   ];
 
-  const noText = ["Please ;-;", "why :<", "huhu sige na", "pls master", "won't u let me? :("];
+  const noText = [
+    "Please ;-;",
+    "why :<",
+    "huhu sige na",
+    "pls master",
+    "won't u let me? :(",
+  ];
 
   const [noImageIndex, setNoImageIndex] = useState(0);
+  const [buttonPosition, setButtonPosition] = useState({
+    top: "50%",
+    left: "50%",
+  });
 
   const yesFunction = () => {
     navigate("/yes");
   };
 
   const noFunction = () => {
-    // Update the currentImage based on noImages array
+    const screenHeight = window.innerHeight;
+    const screenWidth = window.innerWidth;
+    const top = Math.random() * (screenHeight - 50); // 50 is an approximate button height
+    const left = Math.random() * (screenWidth - 100); // 100 is an approximate button width
+    setButtonPosition({ top: `${top}px`, left: `${left}px` });
+
     setCurrentImage(noImages[noImageIndex]);
     setNoImageIndex((prevIndex) => {
-      // Increment the index or reset to 0 if at the end of the array
       const nextIndex = prevIndex + 1 < noImages.length ? prevIndex + 1 : 0;
       return nextIndex;
     });
     setDisplayText(noText[noImageIndex]);
-    
   };
 
   useEffect(() => {
     let index = 0;
-    const normalDelay = 110; // Normal delay between letters
-    const commaDelay = 1000; // Longer delay after a comma
+    const normalDelay = 110;
+    const commaDelay = 1000;
 
     const displayNextLetter = () => {
       if (index < text.length) {
@@ -67,7 +78,6 @@ function Homepage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 5 }}
       >
-        {" "}
         <ImageCard imageURL={currentImage} />
       </motion.div>
       <div className="text-2xl mx-3 text-white font-bold">{displayText}</div>
@@ -77,8 +87,19 @@ function Homepage() {
         transition={{ delay: 8 }}
         className="flex flex-row justify-center gap-4 w-full"
       >
-        <Button callback={yesFunction}>Yes</Button>
-        <Button callback={noFunction}>No</Button>
+        {/* The "Yes" button remains stationary and is placed outside of the div that moves */}
+        <Button callback={yesFunction} className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">Yes</Button>
+        {/* Dynamically position only the "No" button */}
+        <Button
+          callback={noFunction}
+          style={{
+            position: "absolute",
+            top: buttonPosition.top,
+            left: buttonPosition.left,
+          }}
+        >
+          No
+        </Button>
       </motion.div>
     </div>
   );

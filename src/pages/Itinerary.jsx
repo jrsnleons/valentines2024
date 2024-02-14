@@ -32,7 +32,7 @@ function Itinerary() {
         {displayText}
       </div>
       <div className="text-l mx-3 text-neutral-500 ">
-        *ill pick you up after ur last class hehe I have smthn to give u *
+        * i'll pick you up after ur last class hehe I have smthn to give u hehe donchu worry i have planned for this fufu *
       </div>
     </div>
   );
