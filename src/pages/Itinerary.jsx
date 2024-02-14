@@ -27,7 +27,7 @@ function Itinerary() {
   return (
     <div className="bg-neutral-900 flex flex-col h-screen justify-center items-center gap-4">
       <ConfettiExplosion />
-      <ImageCard imageURL="../../public/happi.gif" />
+      <ImageCard imageURL="/happi.gif" />
       <div className="text-2xl mx-3 text-purple-300 font-bold">
         {displayText}
       </div>
